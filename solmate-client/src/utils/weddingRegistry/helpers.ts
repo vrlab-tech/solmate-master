@@ -43,13 +43,14 @@ async function getConfig(): Promise<any> {
 export async function getRpcUrl(): Promise<string> {
   try {
     const config = await getConfig();
+    console.log("config", config);
     if (!config.json_rpc_url) throw new Error('Missing RPC URL');
     return config.json_rpc_url;
   } catch (err) {
     console.warn(
       'Failed to read RPC url from CLI config file, falling back to localhost',
     );
-    return 'http://localhost:8899';
+    return process.env.NODE_ENV==='development' ? 'http://localhost:8899' : ' https://api.devnet.solana.com';
   }
 }
 
