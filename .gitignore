@@ -1,0 +1,12 @@
+
+# client ignores 
+solmate-client/node_modules
+solmate-client/.env
+
+# program ignores
+smart-contract-rust-solana/node_modules
+smart-contract-rust-solana/*.sw[po]
+smart-contract-rust-solana/.cargo
+smart-contract-rust-solana/dist
+smart-contract-rust-solana/.env
+smart-contract-rust-solana/test-ledger

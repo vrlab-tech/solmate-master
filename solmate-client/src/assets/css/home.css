@@ -1,0 +1,134 @@
+.weding_img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.brand_logo {
+  position: absolute;
+  top: 0%;
+  width: 35%;
+}
+
+.blockchain_text {
+  position: absolute;
+  top: 25%;
+  right: 5%;
+  width: 30%;
+}
+
+.register_text {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 2.2vw;
+  line-height: 114.5%;
+  text-transform: uppercase;
+  position: absolute;
+  top: 44%;
+  right: 5%;
+  width: 30%;
+}
+
+.register_btn {
+  text-transform: uppercase;
+  color: #fa367d;
+  font-size: 1.5vw;
+  background: #fdfdfd;
+  border-radius: 18px;
+  padding: 1.9vw 1.2vw 1.2vw 1.2vw;
+  position: absolute;
+  top: 53%;
+  right: 15%;
+  width: 20%;
+  border-color: #ffffff;
+  cursor: pointer;
+}
+
+.nft_img_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 1vw;
+}
+
+.nft_ring_img_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 4vw;
+}
+
+.nft_img {
+  margin-top: -6vw;
+  width: 40vw;
+  height: 50vw;
+}
+
+.nft_ring_img {
+  width: 40vw;
+  height: 45vw;
+}
+
+.img_desc_text_container {
+  width: 37%;
+}
+.img_desc_text {
+  color: #ffffff;
+  font-size: 2.7vw;
+}
+
+.horizontal_line {
+  background: #ffffff;
+  height: 1px;
+  width: 20vw;
+}
+
+.footer {
+  background: #162049;
+  padding: 1vw;
+}
+
+.footer-text {
+  color: #ffffff;
+  font-size: 1.2vw;
+}
+
+.socials_img {
+  /* height: 5vw; */
+  /* width: 17vw; */
+}
+
+@media screen and (max-width: 768px) and (min-width: 200px) {
+  .nft_img_container,
+  .nft_ring_img_container {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .nft_img {
+    width: 40vw;
+    height: 50vw;
+  }
+  .img_desc_text_container {
+    width: 63%;
+    margin-bottom: 7vw;
+  }
+  .img_desc_text {
+    font-size: 4vw;
+  }
+
+  .horizontal_line {
+    width: 40vw;
+  }
+  .footer {
+    padding: 2vw;
+  }
+  .socials_img {
+    /* height: 8vw; */
+    /* width: 28vw; */
+  }
+  .footer-text {
+    margin-bottom: 2px;
+    font-size: 2vw;
+  }
+}
