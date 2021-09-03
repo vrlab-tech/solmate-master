@@ -17,7 +17,7 @@ export const DownloadCertificate = () => {
   useEffect(() => {
     axios
       // .get(`${apiEndPoint}/certificate?public_key=dfddfdfdfdf`)
-      .get(`${apiEndPoint}/certificate?=public_key${publicKey.toString}`)
+      .get(`${apiEndPoint}/certificate?=public_key${publicKey.toString()}`)
       .then((res) => {
         if (typeof res.data.success === "boolean" && !res.data.sucess) {
           setStatus(false);
