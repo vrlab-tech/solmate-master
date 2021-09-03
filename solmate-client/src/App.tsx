@@ -47,7 +47,7 @@ function App() {
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider
         localStorageKey="solmate-pb"
-        autoConnect={true}
+        autoConnect={false}
         onError={onError}
         wallets={wallets}
       >

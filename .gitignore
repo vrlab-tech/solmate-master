@@ -1,7 +1,8 @@
 
 # client ignores 
 solmate-client/node_modules
-solmate-client/.env
+solmate-client/.env.development
+solmate-client/.env.production
 
 # program ignores
 smart-contract-rust-solana/node_modules

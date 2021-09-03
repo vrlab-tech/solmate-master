@@ -4,6 +4,8 @@ import "../../assets/css/home.css";
 
 const Home = () => {
   const history = useHistory();
+  console.log("p", process.env);
+
   return (
     <div>
       <div className="weding_img">

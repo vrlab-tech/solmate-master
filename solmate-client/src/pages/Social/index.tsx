@@ -14,7 +14,7 @@ export const Social = () => {
   console.log("public ", publicKey.toString());
   useEffect(() => {
     axios
-      .get(`${apiEndPoint}/social?public_key=dfddfdfdfdf`)
+      .get(`${apiEndPoint}/social`)
       .then((res) => {
         console.log("res", res.data);
         setFeed(res.data);

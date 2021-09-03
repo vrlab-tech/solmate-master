@@ -12,8 +12,7 @@ export const Nfts = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get(`${apiEndPoint}/nft?public_key=dfddfdfdfdf`)
-      // .get(`${apiEndPoint}/nft?public_key=${publicKey}`)
+      .get(`${apiEndPoint}/nft?public_key=${publicKey}`)
       .then((res) => {
         if (!!res.data && Array.isArray(data)) setData(res.data);
       })
