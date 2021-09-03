@@ -16,7 +16,7 @@ export const DateNFT = () => {
       setImageBlob(blob);
     }
   }, [generatedFile]);
-
+  console.log("timer", timer);
   return (
     <>
       <div
@@ -43,8 +43,8 @@ export const DateNFT = () => {
                     </p>
                     <p className=" font-family-Man m-0">
                       {timer.isFuture
-                        ? "You have been married for"
-                        : "Your marriage is after"}{" "}
+                        ? "Your marriage is after"
+                        : "You have been married for"}{" "}
                       :{" "}
                     </p>
                     <p className="date-text-lg" style={{ color: "#FFB6BD" }}>
@@ -60,17 +60,17 @@ export const DateNFT = () => {
                       src={imageBlob}
                     />
                   </div>
-                  <div className="col-xl-4 my-1 text-center text-white"></div>
-                  <div className="col-xl-4 my-1 text-center text-white">
+                  <div className="col-xl-3 my-1 text-center text-white"></div>
+                  <div className="col-xl-6 my-1 text-center text-white">
                     <br></br>
                     <button
                       type="button"
-                      className="btn py-2 px-5 bg-purple-gradient text-white rounded-pill font-weight-bold w-100"
+                      className="btn py-2 bg-purple-gradient text-white rounded-pill font-weight-bold w-100"
                     >
                       NFT address : {state.nftAddress}
                     </button>
                   </div>
-                  <div className="col-xl-4 my-1 text-center text-white"></div>
+                  <div className="col-xl-3 my-1 text-center text-white"></div>
                 </div>
               </div>
             </div>

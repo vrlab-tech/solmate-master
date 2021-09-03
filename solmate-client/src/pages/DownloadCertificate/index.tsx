@@ -6,8 +6,10 @@ import { Header } from "../../components/Header";
 import { apiEndPoint } from "../../config/constants";
 import FileSaver from "file-saver";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 export const DownloadCertificate = () => {
+  const history = useHistory();
   const { publicKey } = useWallet();
   const [status, setStatus] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -33,8 +35,8 @@ export const DownloadCertificate = () => {
   const downloadCertificate = () => {
     setDownloading(true);
     axios
-      .get(`${apiEndPoint}/certificate?public_key=dfddfdfdfdf`)
-      // .get(`${apiEndPoint}/certificate?=public_key${publicKey.toString}`)
+      // .get(`${apiEndPoint}/certificate?public_key=dfddfdfdfdf`)
+      .get(`${apiEndPoint}/certificate?=public_key${publicKey.toString}`)
       .then((resp) => {
         console.log("in this then1");
         // const file = window.URL.createObjectURL(new Blob([resp.data]));
@@ -90,6 +92,7 @@ export const DownloadCertificate = () => {
                         </button>
                       ) : (
                         <button
+                          onClick={() => history.push("/wedding-details")}
                           type="button"
                           className="btn py-2 text-white font-weight-bold w-auto rounded"
                           style={{ border: "2px solid #ec495aa6" }}

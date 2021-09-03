@@ -1,7 +1,7 @@
 import { useWallet } from "@solana/wallet-adapter-react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import shallow from "zustand/shallow";
 import { Header } from "../../components/Header";
@@ -9,7 +9,9 @@ import { apiEndPoint } from "../../config/constants";
 import { useNftStore } from "../../store/nft";
 import { useWalletStore } from "../../store/wallet";
 export const PreviewNFT = () => {
+  const history = useHistory();
   const generatedFile = useNftStore((state) => state.generated, shallow);
+  const idnft = useNftStore((state) => state.idnft, shallow);
   const publicAddress = useWalletStore((state) => state.publicAddress, shallow);
   const [imageBlob, setImageBlob] = useState<string | undefined>();
   useEffect(() => {
@@ -18,18 +20,21 @@ export const PreviewNFT = () => {
       setImageBlob(blob);
     }
   }, [generatedFile]);
-  const { state } = useLocation<{ nftAddress: string }>();
+  const { state } = useLocation<{ nftAddress: string; idnft: string }>();
   const shareNftSocial = () => {
     axios
       .post(`${apiEndPoint}/social`, {
         public_key: publicAddress,
-        nft_address: state.nftAddress,
+        idnft: idnft,
       })
       .then((res) => {
         toast.success("NFT shared on SolMate social");
+        history.push("/solmate-social");
       })
       .catch((error) => {});
   };
+  console.log("state", state);
+  console.log("state", idnft);
   return (
     <>
       <div
@@ -75,7 +80,10 @@ export const PreviewNFT = () => {
                         className="col-md-6 rounded"
                         style={{ background: "#F9B6BD !importanr" }}
                       >
-                        <div className="text-center">
+                        <div
+                          style={{ background: "#fff", borderRadius: "20px" }}
+                          className="text-center"
+                        >
                           <div className="modal-body">
                             <img
                               alt="share"
@@ -94,17 +102,19 @@ export const PreviewNFT = () => {
                             </p>
                           </div>
                           <div className="share-icon-row">
-                            <img
-                              onClick={() => shareNftSocial()}
-                              style={{ cursor: "pointer" }}
-                              alt="solana home"
-                              className="py-3 px-1"
-                              width="25%"
-                              src={
-                                require("../../assets/images/solmate-social-icon.png")
-                                  .default
-                              }
-                            />
+                            {idnft.toString().length > 0 && (
+                              <img
+                                onClick={() => shareNftSocial()}
+                                style={{ cursor: "pointer" }}
+                                alt="solana home"
+                                className="py-3 px-1"
+                                width="25%"
+                                src={
+                                  require("../../assets/images/solmate-social-icon.png")
+                                    .default
+                                }
+                              />
+                            )}
                             <img
                               style={{ cursor: "pointer" }}
                               alt="fb-share"

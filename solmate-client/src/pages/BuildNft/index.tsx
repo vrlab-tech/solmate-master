@@ -18,7 +18,7 @@ import mintNFT from "../../utils/customNFT/mintNFT";
 export const BuildNft = () => {
   const history = useHistory();
   const { adapter, wallet, signTransaction } = useWallet();
-  const { setGeneratedFile } = useNftStore((state) => state, shallow);
+  const { setGeneratedFile, setIdNft } = useNftStore((state) => state, shallow);
   const [previewLoader, setPreviewLoader] = useState(false);
   const [frameColor, setFrameColor] = useState("#111");
   const [selectedImage, setSelectedImage] = useState<string | undefined>();
@@ -188,10 +188,15 @@ export const BuildNft = () => {
       formData.append("minted_token_address", mintKey.toString());
       formData.append("nft_address", nftAddress);
       formData.append("public_key", adapter?.publicKey.toString());
+      let idnft = "";
       axios
         .post(`${apiEndPoint}/nft`, formData)
         .then((res) => {
-          toast.success(`NFT created with address ${nftAddress}`);
+          if (res.data.success) {
+            toast.success(`NFT created with address ${nftAddress}`);
+            idnft = res.data.idnft;
+            setIdNft(res.data.idnft);
+          }
         })
         .catch((error) => {
           console.log("add error", error);
@@ -199,7 +204,7 @@ export const BuildNft = () => {
         });
 
       setTimeout(() => {
-        history.push("/preview-nfts", { nftAddress });
+        history.push("/preview-nfts", { nftAddress, idnft });
         setLoader(false);
       }, 1000);
     } catch (error) {
