@@ -233,7 +233,7 @@ export async function reportGreetings(): Promise<void> {
 }
 
 export async function registerWeeding  (details: Registry) : Promise<{trx:string,greetedPubKey:string}> {
-  console.log("Let's start registering");
+  console.log("Let's start registering",details);
 
     await establishConnection();
 
