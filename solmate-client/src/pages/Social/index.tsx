@@ -65,7 +65,13 @@ export const Social = () => {
                   ) : Array.isArray(socialFeed) && socialFeed.length > 0 ? (
                     <div>
                       {socialFeed.map((feed, index) => {
-                        return <SocialFeedCard feed={feed} key={index} />;
+                        return (
+                          <SocialFeedCard
+                            publicKey={publicKey.toString()}
+                            feed={feed}
+                            key={index}
+                          />
+                        );
                       })}
                     </div>
                   ) : (
@@ -98,9 +104,32 @@ interface ISocialFeedCard {
     shares: number;
     updated_at: number;
   };
+  publicKey: string;
 }
 const SocialFeedCard = (props: ISocialFeedCard) => {
-  const { feed } = props;
+  const { feed, publicKey } = props;
+  const [isLiked, setLiked] = useState(feed.likes);
+  const [shares, setShares] = useState(feed.shares);
+  const likePost = () => {
+    axios
+      .post(`${apiEndPoint}/like`, {
+        public_key: publicKey,
+        idsocial: feed.idsocial,
+      })
+      .then((res) => {
+        setLiked(res.data.likes);
+      });
+  };
+  const sharePost = () => {
+    axios
+      .post(`${apiEndPoint}/share`, {
+        public_key: publicKey,
+        idsocial: feed.idsocial,
+      })
+      .then((res) => {
+        setShares(shares + 1);
+      });
+  };
   return (
     <div className="row d-flex justify-content-center">
       <div
@@ -128,15 +157,25 @@ const SocialFeedCard = (props: ISocialFeedCard) => {
           <img alt="solana home" className="" width="80%" src={feed.image} />
         </div>
         <div className="d-flex post-actions">
-          <a
-            href="#"
+          <div
+            style={{ cursor: "pointer" }}
+            onClick={() => likePost()}
             className="d-flex align-items-center text-muted mr-4  text-decoration-none"
           >
-            <img
-              alt="solana home"
-              className=""
-              src={require("../../assets/images/like.png").default}
-            />
+            {isLiked ? (
+              <img
+                alt="solana home"
+                className=""
+                src={require("../../assets/images/like.png").default}
+              />
+            ) : (
+              <img
+                alt="solana home"
+                className=""
+                src={require("../../assets/images/like.png").default}
+              />
+            )}
+
             <p
               className="d-none d-md-block ml-2  my-0"
               style={{
@@ -144,12 +183,12 @@ const SocialFeedCard = (props: ISocialFeedCard) => {
                 marginLeft: "6px",
               }}
             >
-              {feed.likes}
+              {isLiked}
             </p>
-          </a>
+          </div>
 
-          <a
-            href="#"
+          <div
+            onClick={() => sharePost()}
             className="d-flex align-items-center text-muted mx-3 text-decoration-none"
           >
             <img
@@ -164,9 +203,9 @@ const SocialFeedCard = (props: ISocialFeedCard) => {
                 marginLeft: "6px",
               }}
             >
-              Share
+              {shares} Shares
             </p>
-          </a>
+          </div>
         </div>
       </div>
     </div>
