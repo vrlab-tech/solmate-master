@@ -110,8 +110,7 @@ const SingleWalletButton = (props: ISingleWalletButton) => {
   }, [adapter?.connected]);
   return (
     <div onClick={handleClick} className="my-4">
-      <a
-        // href="#"
+      <div
         className="btn btn-light d-flex rounded-pill justify-content-center py-3 "
         style={{ zIndex: 9999999 }}
       >
@@ -123,7 +122,7 @@ const SingleWalletButton = (props: ISingleWalletButton) => {
         <span className="px-2 color-red font-weight-bolder text-uppercase">
           {content}
         </span>
-      </a>
+      </div>
     </div>
   );
 };

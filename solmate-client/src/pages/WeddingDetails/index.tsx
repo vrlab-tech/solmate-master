@@ -11,6 +11,7 @@ import { toast, ToastContainer } from "react-toastify";
 import moment from "moment";
 import _ from "lodash";
 import { registerWeeding } from "../../utils/weddingRegistry/registerWedding";
+import { useHistory } from "react-router-dom";
 type TInitialValues = {
   bride_firstname: string;
   bride_lastname: string;
@@ -44,7 +45,7 @@ const WeddingFormSchema = Yup.object().shape({
   location: Yup.string().required("This field is required"),
 });
 export const WeddingDetails = () => {
-  console.log("p", process.env);
+  const history = useHistory();
   const { publicAddress } = useWalletStore((state) => state, shallow);
   const [isAdded, setIsAdded] = useState({
     status: false,
@@ -82,6 +83,7 @@ export const WeddingDetails = () => {
         console.log("res", res.data);
         if (res.data.success) {
           toast.success(res.data.message);
+          history.push("/download-certificate");
         } else {
           toast.error(res.data.message);
         }
