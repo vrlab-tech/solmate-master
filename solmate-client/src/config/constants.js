@@ -1,1 +1,1 @@
-export const apiEndPoint = "http://194.163.160.51:5000/api"
+export const apiEndPoint = "https://solmate.life/api"

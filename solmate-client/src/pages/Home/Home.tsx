@@ -84,7 +84,7 @@ const Home = () => {
           <p className="footer-text">© Solmate | Terms & Conditions</p>
         </div>
         <div className="d-flex justify-content-center">
-          <div className="col-lg-6 justify-content-evenly d-flex">
+          <div className="col-lg-6 justify-content-evenly d-flex footer-img-row">
             <img
               src={require("../../assets/images/fbicon.png").default}
               alt="socials"
