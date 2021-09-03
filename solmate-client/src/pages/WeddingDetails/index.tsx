@@ -76,7 +76,7 @@ export const WeddingDetails = () => {
         ...data,
         public_key: publicAddress,
         account_id: registry.greetedPubKey,
-        trasaction_id: registry.trx,
+        transaction_id: registry.trx,
       })
       .then((res) => {
         setLoading(false);
