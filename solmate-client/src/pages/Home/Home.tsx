@@ -58,8 +58,8 @@ const Home = () => {
       <div className="nft_ring_img_container">
         <div className="img_desc_text_container">
           <p className="img_desc_text">
-            <span style={{ color: "#FA367D" }}>Create NFTs</span> (images on the
-            blockchain) and share to seal the deal forever.
+            <span style={{ color: "#FA367D" }}>Create NFTs</span> on Solana and
+            share to seal the deal forever.
           </p>
           <div className="horizontal_line" />
         </div>

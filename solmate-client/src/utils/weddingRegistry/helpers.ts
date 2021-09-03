@@ -50,8 +50,8 @@ export async function getRpcUrl(): Promise<string> {
     console.warn(
       'Failed to read RPC url from CLI config file, falling back to localhost',
     );
-    return 'http://localhost:8899';
-    // return process.env.NODE_ENV==='development' ? 'http://localhost:8899' : ' https://api.devnet.solana.com';
+    // return process.env.NODE_ENV==='http://localhost:8899';
+    return process.env.NODE_ENV==='development' ? 'http://localhost:8899' : 'https://api.devnet.solana.com';
   }
 }
 
